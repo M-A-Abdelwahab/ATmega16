@@ -204,7 +204,7 @@ void LCD_Clear (void)								/* LCD clear function */
 #include <stdio.h>
 #include "LCD_16x2_H.h"
 
-void ADC_Init()
+void ADC_Init()// configuration
 {
 	ADMUX |=(1<<REFS0); /* Vref: Avcc */
  23a:	87 b1       	in	r24, 0x07	; 7
@@ -269,8 +269,9 @@ int main()
 	int value;
 	//float value;
 
-	ADC_Init();
+	ADC_Init();// configuration
  27c:	0e 94 1d 01 	call	0x23a	; 0x23a <ADC_Init>
+	
 	LCD_Init();			/* Initialization of LCD */
  280:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <LCD_Init>
 	LCD_String("ADC value");	/* Write string on 1st line of LCD */
@@ -280,6 +281,7 @@ int main()
 	LCD_Command(0xc4);	// LCD16x2 cursor position
  28c:	84 ec       	ldi	r24, 0xC4	; 196
  28e:	0e 94 c2 00 	call	0x184	; 0x184 <LCD_Command>
+	
 	value=ADC_Read();	// Read ADC after conversion (one time conversion)
  292:	0e 94 2a 01 	call	0x254	; 0x254 <ADC_Read>
     } else if (__radix < 2 || __radix > 36) {

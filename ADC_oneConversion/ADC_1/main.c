@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "LCD_16x2_H.h"
 
-void ADC_Init()
+void ADC_Init()// configuration
 {
 	ADMUX |=(1<<REFS0); /* Vref: Avcc */
 	ADMUX |=(1<<MUX0);	/* , ADC channel: 1 */
@@ -40,10 +40,12 @@ int main()
 	int value;
 	//float value;
 
-	ADC_Init();
+	ADC_Init();// configuration
+	
 	LCD_Init();			/* Initialization of LCD */
 	LCD_String("ADC value");	/* Write string on 1st line of LCD */
 	LCD_Command(0xc4);	// LCD16x2 cursor position
+	
 	value=ADC_Read();	// Read ADC after conversion (one time conversion)
 	
 	itoa(value,String,10);
